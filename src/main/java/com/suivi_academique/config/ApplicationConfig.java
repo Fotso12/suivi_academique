@@ -38,7 +38,7 @@ public class ApplicationConfig {
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
 
-        // DEBUG -> vérifier la comparaison de mot de passe
+        // DEBUG -> vérifier la comparaison de mot de passe :
         authProvider.setPreAuthenticationChecks(user -> {
             System.out.println("Password userDetails : " + user.getPassword());
         });
