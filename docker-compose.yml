@@ -1,20 +1,16 @@
 services:
   sa_api_compose:
-    build: .
+    image: ${DOCKER_USERNAME}/suivie-academique:latest
     restart: always
     ports:
       - "8080:8089"
     networks:
       - sa_net
     environment:
-      # Spring va lire la valeur définie dans le fichier .env
-      - SPRING_PROFILES_ACTIVE=${APP_PROFILE}
-      # On peut aussi passer des variables qui écrasent les fichiers properties si besoin
+      - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_PASSWORD=${DB_ROOT_PASSWORD}
     depends_on:
       - mysqldb
-    volumes:
-      - .m2:/root/.m2
 
   mysqldb:
     image: "mysql:8.0"
@@ -24,7 +20,7 @@ services:
     networks:
       - sa_net
     environment:
-      MYSQL_DATABASE: sa_api_db
+      MYSQL_DATABASE: suivie_academique
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 
 networks:
