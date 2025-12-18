@@ -1,0 +1,32 @@
+services:
+  sa_api_compose:
+    build: .
+    restart: always
+    ports:
+      - "8080:8089"
+    networks:
+      - sa_net
+    environment:
+      # Spring va lire la valeur définie dans le fichier .env
+      - SPRING_PROFILES_ACTIVE=${APP_PROFILE}
+      # On peut aussi passer des variables qui écrasent les fichiers properties si besoin
+      - SPRING_DATASOURCE_PASSWORD=${DB_ROOT_PASSWORD}
+    depends_on:
+      - mysqldb
+    volumes:
+      - .m2:/root/.m2
+
+  mysqldb:
+    image: "mysql:8.0"
+    restart: always
+    ports:
+      - "3308:3306"
+    networks:
+      - sa_net
+    environment:
+      MYSQL_DATABASE: sa_api_db
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+networks:
+  sa_net:
+    driver: bridge
