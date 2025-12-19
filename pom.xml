@@ -7,7 +7,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.7</version>
         <relativePath/> </parent>
-    <groupId>com.suivie_academique</groupId>
+    <groupId>com.suivi_academique</groupId>
     <artifactId>suivie_academique</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>suivie_academique</name>

@@ -7,6 +7,7 @@ import com.suivi_academique.config.JwtAuthenticationFilter;
 import com.suivi_academique.config.SecurityConfig;
 import com.suivi_academique.config.JwtUtil;
 
+import com.suivi_academique.SuiviAcademiqueApplication;
 import com.suivi_academique.controllers.SalleController;
 import com.suivi_academique.dto.SalleDTO;
 import com.suivi_academique.services.implementations.PersonnelDetailsService;
@@ -28,6 +29,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,6 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // 🚀 CORRECTION CLÉ : Rétablissement de ContextConfiguration pour trouver la classe principale
 // =================================================================
 
+@ContextConfiguration(classes = SuiviAcademiqueApplication.class)
 @WebMvcTest(
         controllers = SalleController.class,
         excludeAutoConfiguration = UserDetailsServiceAutoConfiguration.class
