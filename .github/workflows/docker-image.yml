@@ -45,7 +45,7 @@ jobs:
       - name: 🏗️ Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 7. Build et Push l'image
+      # 7. Build et Push l'image avec
       - name: 🐳 Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
@@ -53,5 +53,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            docker.io/fotso12/sa-api-compose:latest
-            docker.io/fotso12/sa-api-compose:${{ github.sha }}
+            docker.io/darryl1234/sa-api-compose:latest
+            docker.io/darryl1234/sa-api-compose:${{ github.sha }}
