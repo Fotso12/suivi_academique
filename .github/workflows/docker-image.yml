@@ -53,5 +53,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            Fotso12/sa-api-compose:latest
-            Fotso12/sa-api-compose:${{ github.sha }}
+            docker.io/Fotso12/sa-api-compose:latest
+            docker.io/Fotso12/sa-api-compose:${{ github.sha }}
