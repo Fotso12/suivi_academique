@@ -1,3 +1,4 @@
 - [ ] Modifier le Dockerfile pour exécuter les tests (supprimer -DskipTests)
 - [ ] Ajouter une étape de tests dans le workflow GitHub Actions
 - [ ] Tester les modifications localement en exécutant les tests
+- [x] Fix GitHub Actions test failure: Remove @ContextConfiguration from SalleControllerWebMvcTest and add @TestPropertySource for JWT properties

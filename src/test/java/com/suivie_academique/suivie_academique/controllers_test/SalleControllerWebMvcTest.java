@@ -2,7 +2,6 @@ package com.suivie_academique.suivie_academique.controllers_test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 // Import des classes de configuration et de sécurité
-import com.suivi_academique.SuiviAcademiqueApplication; // 🔑 Rétablissement de l'import de la classe principale
 import com.suivi_academique.config.JwtAuthenticationEntryPoint;
 import com.suivi_academique.config.JwtAuthenticationFilter;
 import com.suivi_academique.config.SecurityConfig;
@@ -29,7 +28,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.test.context.ContextConfiguration; // 🔑 Import nécessaire
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
@@ -52,10 +51,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         controllers = SalleController.class,
         excludeAutoConfiguration = UserDetailsServiceAutoConfiguration.class
 )
-// 🔑 Rétablissement de cette ligne qui permet à Spring de localiser la configuration principale
-@ContextConfiguration(classes = SuiviAcademiqueApplication.class)
 // 🔑 Maintien des Imports pour que Spring Security trouve les beans spécifiques du filtre et de l'entrypoint
 @Import({SecurityConfig.class, JwtAuthenticationFilter.class, JwtAuthenticationEntryPoint.class})
+@TestPropertySource(properties = {
+    "jwt.secret=mySecretKeyForJWTTokenGenerationAndValidationPurposes12345678901234567890",
+    "jwt.expiration=86400000"
+})
 @DisplayName("Tests d'intégration du SalleController avec Sécurité JWT")
 class SalleControllerWebMvcTest {
 
